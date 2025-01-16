@@ -1,39 +1,43 @@
-<h1>Today you could ride a <%= @car.brand %> <%= @car.model %></h1>
+<div class="background-image" style="background-image: linear-gradient(rgba(0, 0, 0, 9), rgba(248, 242, 132, 0.3)), url('<%= image_path "home.jpg" %>')">
 
-<h2>Details:</h2>
+  <h1><%= @car.brand %> <br> <%= @car.model %></h1>
 
-<ul>
-  <li> 🏁 Brand: <%= @car.brand %></li>
-  <li> 🚘 Model: <%= @car.model %></li>
-  <li> 🔢 Year: <%= @car.year %></li>
-  <li> 🔥 Fuel: <%= @car.fuel %></li>
-</ul>
+  <h2>Details:</h2>
 
-<h2>Check out the reviews of <%= @car.brand %> <%= @car.model %></h2>
+  <ul>
+    <li> 🏁 Brand: <%= @car.brand %></li>
+    <li> 🚘 Model: <%= @car.model %></li>
+    <li> 🔢 Year: <%= @car.year %></li>
+    <li> 🔥 Fuel: <%= @car.fuel %></li>
+  </ul>
 
-<ul>
-  <% @car.reviews.each do |review| %>
-    <li>Comment: <%= review.comment %> Rating:<%= review.rating %></li>
-  <% end %>
-</ul>
+  <h2>Check out the reviews of <%= @car.brand %> <%= @car.model %></h2>
 
-<h2>Create a new review <%= @car.brand %> <%= @car.model %></h2>
-<%= simple_form_for [@car, @review] do |f| %>
-  <%= f.input :comment, placeholder: 'Mamma miaaaaaaaa! Enter a comment about the vehicle'%>
-  <%= f.input :rating, placeholder: 'Give it a rating from 0 - 10, with 10 being fantastico!'%>
-  <%= f.submit %>
-<% end %>
+  <ul>
+    <% @car.reviews.each do |review| %>
+      <li>Comment: <%= review.comment %> Rating:<%= review.rating %></li>
+    <% end %>
+  </ul>
 
-<h2>Add this car to your favourites</h2>
-<% if @favourites.include?(@car) %>
-  <p>You've already liked this car!</p>
-<% else %>
-  <%= simple_form_for [@car, @favourite] do |f| %>
+  <h2>Create a new review <%= @car.brand %> <%= @car.model %></h2>
+  <%= simple_form_for [@car, @review] do |f| %>
+    <%= f.input :comment, placeholder: 'Mamma miaaaaaaaa! Enter a comment about the vehicle'%>
+    <%= f.input :rating, placeholder: 'Give it a rating from 0 - 10, with 10 being fantastico!'%>
     <%= f.submit %>
   <% end %>
-<% end %>
 
-<hr>
-<%= link_to "My favourite cars", favourites_path %>
-<hr>
-<%= link_to "Back to the Rainbow Road Garage", cars_path %>
+  <h2>Add this car to your favourites</h2>
+  <% if @favourites.include?(@car) %>
+    <p>You've already liked this car!</p>
+  <% else %>
+    <%= simple_form_for [@car, @favourite] do |f| %>
+      <%= f.submit %>
+    <% end %>
+  <% end %>
+
+  <hr>
+  <%= link_to "My favourite cars", favourites_path %>
+  <hr>
+  <%= link_to "Back to the Rainbow Road Garage", cars_path %>
+
+</div>

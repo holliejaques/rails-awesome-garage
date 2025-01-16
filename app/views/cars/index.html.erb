@@ -1,12 +1,21 @@
-<h1>The Rainbow Road Garage</h1>
+<div class="background-image" style="background-image: linear-gradient(rgba(0, 0, 0, 9), rgba(248, 242, 132, 0.3)), url('<%= image_path "home.jpg" %>')">
+  <div class="banner">
+      <h1>The Rainbow <br> Road Garage</h1>
+  </div>
 
-<ol>
-  <% @cars.each do |car| %>
-    <%= link_to car_path(car) do %>
-      <li> <%= car.brand %> <%= car.model %> </li>
-    <% end %>
-    <hr>
-  <% end %>
-</ol>
+  <div>
+    <ol>
+      <% @cars.each do |car| %>
+        <%= link_to car_path(car) do %>
+          <li> <%= car.brand %> <%= car.model %> </li>
+          <% end %>
+        <hr>
+      <% end %>
+    </ol>
+  </div>
 
-<%= link_to "My favourite cars", favourites_path %>
+  <div>
+      <%= link_to "My favourite cars", favourites_path %>
+  </div>
+
+</div>

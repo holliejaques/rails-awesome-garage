@@ -1,9 +1,13 @@
-<h1>My garage</h1>
+<div class="background-image" style="background-image: linear-gradient(rgba(0, 0, 0, 9), rgba(248, 242, 132, 0.3)), url('<%= image_path "home.jpg" %>')">
 
-<ol>
-  <% @favourites.each do |favourite| %>
-    <li><%= favourite.car.model %> <%= link_to "Delete", favourite_path(favourite), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></li>
-  <% end %>
-</ol>
+  <h1>My <br> Garage</h1>
 
-<%= link_to "Back to the Rainbow Road Garage", cars_path %>
+  <ol>
+    <% @favourites.each do |favourite| %>
+      <li><%= favourite.car.model %> <%= link_to "Delete", favourite_path(favourite), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></li>
+    <% end %>
+  </ol>
+
+  <%= link_to "Back to the Rainbow Road Garage", cars_path %>
+
+</div>
