@@ -23,3 +23,17 @@
   <%= f.input :rating, placeholder: 'Give it a rating from 0 - 10, with 10 being fantastico!'%>
   <%= f.submit %>
 <% end %>
+
+<h2>Add this car to your favourites</h2>
+<% if @favourites.include?(@car) %>
+  <p>You've already liked this car!</p>
+<% else %>
+  <%= simple_form_for [@car, @favourite] do |f| %>
+    <%= f.submit %>
+  <% end %>
+<% end %>
+
+<hr>
+<%= link_to "My favourite cars", favourites_path %>
+<hr>
+<%= link_to "Back to the Rainbow Road Garage", cars_path %>

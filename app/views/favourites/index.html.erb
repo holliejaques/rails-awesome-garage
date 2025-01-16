@@ -1,0 +1,9 @@
+<h1>My garage</h1>
+
+<ol>
+  <% @favourites.each do |favourite| %>
+    <li><%= favourite.car.model %> <%= link_to "Delete", favourite_path(favourite), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></li>
+  <% end %>
+</ol>
+
+<%= link_to "Back to the Rainbow Road Garage", cars_path %>
