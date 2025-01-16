@@ -1,0 +1,25 @@
+<h1>Today you could ride a <%= @car.brand %> <%= @car.model %></h1>
+
+<h2>Details:</h2>
+
+<ul>
+  <li> 🏁 Brand: <%= @car.brand %></li>
+  <li> 🚘 Model: <%= @car.model %></li>
+  <li> 🔢 Year: <%= @car.year %></li>
+  <li> 🔥 Fuel: <%= @car.fuel %></li>
+</ul>
+
+<h2>Check out the reviews of <%= @car.brand %> <%= @car.model %></h2>
+
+<ul>
+  <% @car.reviews.each do |review| %>
+    <li>Comment: <%= review.comment %> Rating:<%= review.rating %></li>
+  <% end %>
+</ul>
+
+<h2>Create a new review <%= @car.brand %> <%= @car.model %></h2>
+<%= simple_form_for [@car, @review] do |f| %>
+  <%= f.input :comment, placeholder: 'Mamma miaaaaaaaa! Enter a comment about the vehicle'%>
+  <%= f.input :rating, placeholder: 'Give it a rating from 0 - 10, with 10 being fantastico!'%>
+  <%= f.submit %>
+<% end %>
