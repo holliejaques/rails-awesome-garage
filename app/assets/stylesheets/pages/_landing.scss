@@ -10,3 +10,32 @@
   font-family: "Rubik 80s Fade";
   font-size: 200px;
 }
+
+.landing-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media (max-width: 880px) {
+
+    .home-title {
+      font-size: 70px;
+    }
+  }
+
+  .title {
+    align-self: end;
+  }
+
+  .cars {
+    order: 2;
+  }
+
+  @media (min-width: 1440px) {
+    flex-direction: row;
+
+    .title {
+      order: 2;
+    }
+  }
+}

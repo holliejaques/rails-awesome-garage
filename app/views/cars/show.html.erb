@@ -1,53 +1,57 @@
-<div class="navbar">
-  <%= link_to "Start", cars_path, class: "navbar-link" %>
-  <%= link_to "Pot of Gold", favourites_path, class: "navbar-link" %>
-</div>
-
 <div class="background-image" style="background-image: linear-gradient(rgba(0, 0, 0, 9), rgba(248, 242, 132, 0.3)), url('<%= image_path "plain.png" %>')">
+  <div class="container">
+    <div class="row d-flex flex-direction-column">
+      <div class="col-sm-6 p-5">
+        <div class="banner">
+          <h1 class="show-title"><%= @car.brand.upcase %> <br> <%= @car.model.upcase %></h1>
 
-  <div>
-    <h1><%= @car.brand.upcase %> <br> <%= @car.model.upcase %></h1>
-    <%= link_to "My favourite cars", favourites_path, class: "btn btn-primary" %>
-    <%= link_to "Back to the Rainbow Road Garage", cars_path, class: "btn btn-danger" %>
+          <div class="card-border-show">
+            <h2 class="text-white">Details:</h2>
+              <p>🏁 Brand: <%= @car.brand %></p>
+              <p> 🚘 Model: <%= @car.model %></p>
+              <p> 🔢 Year: <%= @car.year %></p>
+              <p> 🔥 Fuel: <%= @car.fuel %></p>
+          </div>
+
+          <div class="card-border-show">
+            <h2>Add this car to your favourites?</h2>
+              <% if @favourites.include?(@car) %>
+                <p>You've already liked this car!</p>
+              <% else %>
+                <%= simple_form_for [@car, @favourite] do |f| %>
+                  <%= f.submit %>
+              <% end %>
+            <% end %>
+          </div>
+
+          <div class="links d-flex align-items-center justify-content-around">
+            <%= link_to "My favourite cars", favourites_path, class: "btn btn-primary btn-sm" %>
+            <%= link_to "Back to the Rainbow Road Garage", cars_path, class: "btn btn-danger btn-sm" %>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-sm-6 p-5">
+        <div class="card-border-show">
+            <h2 class="form-header mb-1">Reviews of <%= @car.brand %> <%= @car.model %></h2>
+            <hr>
+              <% @car.reviews.each do |review| %>
+                <p class="m-1"><strong>🛞</strong> <%= review.comment %></p>
+                <p class="m-1"><%= '⭐️' * review.rating %></p>
+              <% end %>
+          </div>
+
+        <div class="card-border-show">
+          <h2 class="form-header mb-1">Add a new review for the <%= @car.model %></h2>
+          <hr>
+          <%= simple_form_for [@car, @review] do |f| %>
+            <%= f.input :comment, placeholder: 'E.g. Mamma miaaaaaaaa!', class:"text-white" %>
+            <%= f.input :rating, placeholder: 'From 0 - 10 (10 = fantastico!)' %>
+            <%= f.submit %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </div>
-
-  <div>
-    <h2>Details:</h2>
-    <ul>
-      <li> 🏁 Brand: <%= @car.brand %></li>
-      <li> 🚘 Model: <%= @car.model %></li>
-      <li> 🔢 Year: <%= @car.year %></li>
-      <li> 🔥 Fuel: <%= @car.fuel %></li>
-    </ul>
-  </div>
-
-  <div>
-    <h2>Check out the reviews of <%= @car.brand %> <%= @car.model %></h2>
-    <ul>
-      <% @car.reviews.each do |review| %>
-        <li>Comment: <%= review.comment %> Rating:<%= review.rating %></li>
-      <% end %>
-    </ul>
-  </div>
-
-  <div>
-    <h2>Create a new review <%= @car.brand %> <%= @car.model %></h2>
-    <%= simple_form_for [@car, @review] do |f| %>
-      <%= f.input :comment, placeholder: 'Mamma miaaaaaaaa! Enter a comment about the vehicle'%>
-      <%= f.input :rating, placeholder: 'Give it a rating from 0 - 10, with 10 being fantastico!'%>
-      <%= f.submit %>
-    <% end %>
-  </div>
-
-  <div>
-    <h2>Add this car to your favourites</h2>
-      <% if @favourites.include?(@car) %>
-        <p>You've already liked this car!</p>
-      <% else %>
-        <%= simple_form_for [@car, @favourite] do |f| %>
-          <%= f.submit %>
-      <% end %>
-    <% end %>
-  </div>
-
 </div>

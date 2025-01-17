@@ -1,13 +1,21 @@
 <div class="background-image" style="background-image: linear-gradient(rgba(0, 0, 0, 9), rgba(248, 242, 132, 0.3)), url('<%= image_path "toad.jpg" %>')">
+  <div class="container d-flex flex-column justify-content-center align-items-center">
 
-  <h1>RACE<br>WINNERS</h1>
+      <h1 class="winner-title">RACE WINNERS</h1>
 
-  <ol>
-    <% @favourites.each do |favourite| %>
-      <li><%= favourite.car.model %> <%= link_to "Delete", favourite_path(favourite), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %></li>
-    <% end %>
-  </ol>
+        <div class="cards col-4">
+            <% @favourites.each do |favourite| %>
+            <div class="card-item-favourite">
+              <div class="card-img mb-10 p-10 text-white p-2">
+                <%= image_tag favourite.car.image_url, class: "rounded-circle shadow-4-strong p-2" %>
+              </div>
+              <p><%= favourite.car.model %></p>
+              <p><%= link_to "Delete", favourite_path(favourite), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-primary btn-sm" %></p>
+             </div>
+            <% end %>
+        </div>
 
-  <%= link_to "Back to the Rainbow Road Garage", cars_path, class: "btn btn-danger" %>
+      <%= link_to "Back to the Rainbow Road Garage", cars_path, class: "btn btn-danger btn-sm mx-5 mt-3" %>
 
+  </div>
 </div>

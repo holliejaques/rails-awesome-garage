@@ -11,6 +11,9 @@
   </head>
 
   <body>
-    <%= yield %>
+    <% unless @hide_navbar %>
+      <%= render 'shared/navbar' %>
+    <% end %>
   </body>
+  <%= yield %>
 </html>

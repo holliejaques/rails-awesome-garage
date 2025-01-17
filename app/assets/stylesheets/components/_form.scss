@@ -1,0 +1,19 @@
+.form-header {
+  text-align: left;
+}
+
+.form-control::placeholder {
+  color:white;
+}
+
+input[type="submit" i] {
+  background-color: white;
+  border-radius: 20px;
+  font-size: 12px;
+}
+
+h2 {
+  font-family: "Rubik 80s Fade";
+  font-size: 20px;
+  letter-spacing: 1px;
+}

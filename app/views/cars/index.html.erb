@@ -1,22 +1,35 @@
-<div class="navbar">
-  <%= link_to "Start", cars_path, class: "navbar-link" %>
-  <%= link_to "Pot of Gold", favourites_path, class: "navbar-link" %>
-</div>
-
 <div class="background-image" style="background-image: linear-gradient(rgba(0, 0, 0, 9), rgba(248, 242, 132, 0.3)), url('<%= image_path "background.jpg" %>')">
-  <div class="banner">
-      <h1>THE RAINBOW <br> ROAD GARAGE</h1>
-      <%= link_to "My favourite cars", favourites_path, class: "btn btn-primary"  %>
-  </div>
+  <div class="container">
+    <div class="landing-container">
 
-  <div>
-    <ol>
-      <% @cars.each do |car| %>
-        <%= link_to car_path(car) do %>
-          <li> <%= car.brand %> <%= car.model %> </li>
+      <div class="col-sm-12 col-lg-6 p-20 d-flex align-items-center cars">
+        <div class="width-100">
+
+          <% @cars.each do |car| %>
+           <%= link_to car_path(car) do %>
+
+            <div class="card-item">
+
+              <div class="card-img mb-10 p-10 text-white p-2">
+                <%= image_tag car.image_url, class: "rounded-circle shadow-4-strong" %>
+              </div>
+
+              <div class="card-title p-5">
+                <p class="card-title-link"><%= car.brand %> <%= car.model%></p>
+              </div>
+
+              </div>
+            <% end %>
           <% end %>
-      <% end %>
-    </ol>
-  </div>
 
+        </div>
+      </div>
+
+      <div class="col-sm-6 p-5 title">
+        <div class="banner">
+          <h1 class="home-title">THE RAINBOW <br> ROAD GARAGE</h1>
+        </div>
+      </div>
+
+  </div>
 </div>
